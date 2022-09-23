@@ -10,27 +10,19 @@ help: ## 显示帮助信息
 	@egrep '^(.+)\:\ .*##\ (.+)' ${MAKEFILE_LIST} | sed 's/:.*##/#/' | column -t -c 2 -s '#'
 
 build: ## 构建应用程序
-	go build -o bin/${BINARY}-${VERSION}-local facial/cmd/facial
-	go build -o bin/${BINARY}-api-${VERSION}-local facial/cmd/api
-	go build -o bin/${BINARY}-bot-${VERSION}-local facial/cmd/bot
+	go build -o bin/${BINARY}-${VERSION}-local diana/cmd
 	@echo '本地应用程序构建完毕' 
 
 build-linux: ## 构建Linux应用程序
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/${BINARY}-${VERSION}-linux-amd64 facial/cmd/facial
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/${BINARY}-api-${VERSION}-linux-amd64 facial/cmd/api
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/${BINARY}-bot-${VERSION}-linux-amd64 facial/cmd/bot
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/${BINARY}-${VERSION}-linux-amd64 diana/cmd
 	@echo 'linux应用程序构建完毕'
 
 build-mac: ## 构建mac应用程序
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o bin/${BINARY}-${VERSION}-darwin-amd64 facial/cmd/facial
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o bin/${BINARY}-api-${VERSION}-darwin-amd64 facial/cmd/api
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o bin/${BINARY}-bot-${VERSION}-darwin-amd64 facial/cmd/bot
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o bin/${BINARY}-${VERSION}-darwin-amd64 diana/cmd/main
 	@echo 'mac应用程序构建完毕'
 
 build-windows: ## 构建windows应用程序
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o bin/${BINARY}-${VERSION}-windows-amd64.exe facial/cmd/facial
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o bin/${BINARY}-api-${VERSION}-windows-amd64.exe facial/cmd/api
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o bin/${BINARY}-bot-${VERSION}-windows-amd64.exe facial/cmd/bot
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o bin/${BINARY}-${VERSION}-windows-amd64.exe diana/cmd/main
 	@echo 'windows应用程序构建完毕'
 
 deploy-data: clean build-linux ## 发布到生产环境

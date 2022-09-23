@@ -18,7 +18,9 @@ type Evaluation struct {
 }
 
 func main() {
-	orderFile := "/Users/sheldon/8月全平台顾客评价汇总表0905.xlsx"
+	// orderFile := "/Users/sheldon/8月全平台顾客评价汇总表0905.xlsx"
+	orderFile := "D:\\全平台顾客评价汇总表.xlsx"
+
 	f, err := excelize.OpenFile(orderFile)
 	if err != nil {
 		log.Fatalf("Parse Excel Data File Error: %v", err)
@@ -127,7 +129,7 @@ func main() {
 			}
 		}
 
-		excelFileName := fmt.Sprintf("%s.xlsx", productName)
+		excelFileName := fmt.Sprintf("D:\\结果\\%s.xlsx", productName)
 		if err := f.SaveAs(excelFileName); err != nil {
 			fmt.Printf("save file %s, err: %v", excelFileName, err)
 		}
